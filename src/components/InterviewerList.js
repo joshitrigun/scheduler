@@ -5,14 +5,14 @@ import InterviewerListItem from './InterviewerListItem';
 
 
 const InterviewerList = (props) => {
-  const { value, interviewers, id, setInterviewer } = props;
+  const { value, interviewers, id, onChange } = props;
   const listInterviewers = interviewers.map(list => <InterviewerListItem
     key={list.id}
     name={list.name}
     avatar={list.avatar}
     selected={list.id === value}
     setInterviewer={
-      e => setInterviewer(list.id)
+      e => onChange(list.id)
     }
 
   />)
@@ -32,3 +32,12 @@ const InterviewerList = (props) => {
 };
 
 export default InterviewerList;
+
+
+// const addMembers = (props) => {
+//  props holds the object that was passed to the function when the function was called and in this case the object that was passed was {interviewer: 2, onChange: 3}
+//   const { interviewer, onChange } = props;
+//   return x + y
+// }
+
+// addMembers({ Interviewers: 2, onChange: 3 })
