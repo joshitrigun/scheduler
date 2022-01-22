@@ -31,7 +31,7 @@ const Form = (props) => {
             placeholder="Enter Student Name"
             value={student}
             onChange={(e) => {
-              console.log(e.target.value);
+
               setStudent(e.target.value);
             }}
 
