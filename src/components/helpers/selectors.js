@@ -14,6 +14,15 @@ export const getAppointmentsForDay = (state, day) => {
   return results
 }
 
+export const getInterview = (state, interview) => {
+  //  / console.log("state", state);
 
-//state has days which is an array 
+  if (!interview) return null;
+  const id = interview.interviewer;
+  const interviewer = state.interviewers[id];
+
+  return { ...interview, interviewer }
+
+}
+//state has days which is an array
 // appointments is an object
