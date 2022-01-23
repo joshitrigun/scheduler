@@ -14,6 +14,23 @@ export const getAppointmentsForDay = (state, day) => {
   return results
 }
 
+export const getInterviewersForDay = (state, day) => {
+  //console.log("state", state)
+  const findDay = state.days.find(stateDays => {
+    return stateDays.name === day
+  })
+  if (state.days.length === 0 || !findDay) {
+    return [];
+  }
+
+  const results = findDay.interviewers.map((getId) => {
+
+    return state.interviewers[getId]
+  })
+  return results;
+
+}
+
 export const getInterview = (state, interview) => {
   //  / console.log("state", state);
 
