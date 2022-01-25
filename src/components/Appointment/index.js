@@ -10,12 +10,12 @@ import Form from './Form';
 
 const Appointment = (props) => {
   //console.log("apppointment props", props);
-  const { id, interview, bookInterview } = props;
+  const { interview, bookInterview } = props;
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  const { mode, transition, back, history } = useVisualMode(
-    props.interview ? SHOW : EMPTY
+  const { mode, transition } = useVisualMode(
+    interview ? SHOW : EMPTY
   );
 
   function save(name, interviewer) {
@@ -23,10 +23,11 @@ const Appointment = (props) => {
       student: name,
       interviewer
     };
-    console.log(name, interviewer);
-    props.bookInterview(id, interview);
+    console.log("id", props.id);
+    bookInterview(props.id, interview);
     transition(SHOW);
   }
+  // console.log(props);
   return (
     <>
       <article className="appointment">
@@ -44,7 +45,7 @@ const Appointment = (props) => {
         )}
         {mode === CREATE && (
           <Form
-            onCreate={() => console.log("Click onCreate")}
+
             interviewers={props.interviewers}
             onCancel={() => transition(EMPTY)}
             onSave={(name, interviewer) => save(name, interviewer)}
