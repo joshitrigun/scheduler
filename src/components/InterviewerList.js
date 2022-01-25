@@ -21,7 +21,7 @@ const InterviewerList = (props) => {
 
   return (
     <>
-      <section className={listInterviewers} key={id}>
+      <section key={id}>
         <h4 className="interviewers__header text--light">Interviewer</h4>
         <ul className="interviewers__list">
           {listInterviewers}
