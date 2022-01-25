@@ -9,7 +9,8 @@ import Form from './Form';
 
 
 const Appointment = (props) => {
-  const { interview } = props;
+  //console.log("apppointment props", props);
+  const { id, interview, bookInterview } = props;
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -17,6 +18,15 @@ const Appointment = (props) => {
     props.interview ? SHOW : EMPTY
   );
 
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    console.log(name, interviewer);
+    props.bookInterview(id, interview);
+    transition(SHOW);
+  }
   return (
     <>
       <article className="appointment">
@@ -35,8 +45,10 @@ const Appointment = (props) => {
         {mode === CREATE && (
           <Form
             onCreate={() => console.log("Click onCreate")}
-            interviewers={[]}
-            onCancel={() => transition(EMPTY)} />
+            interviewers={props.interviewers}
+            onCancel={() => transition(EMPTY)}
+            onSave={(name, interviewer) => save(name, interviewer)}
+          />
         )}
 
       </article>
