@@ -15,7 +15,7 @@ export const getAppointmentsForDay = (state, day) => {
 }
 
 export const getInterviewersForDay = (state, day) => {
-  //console.log("state", state)
+
   const findDay = state.days.find(stateDays => {
     return stateDays.name === day
   })
@@ -32,7 +32,6 @@ export const getInterviewersForDay = (state, day) => {
 }
 
 export const getInterview = (state, interview) => {
-  //  / console.log("state", state);
 
   if (!interview) return null;
   const id = interview.interviewer;
