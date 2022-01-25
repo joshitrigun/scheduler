@@ -20,6 +20,7 @@ const Appointment = (props) => {
   const DELETE = "DELETE";
   const CONFIRM = "CONFIRM";
   const ERROR = "ERROR";
+  const EDIT = "EDIT";
 
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
@@ -67,11 +68,11 @@ const Appointment = (props) => {
             student={props.interview.student}
             interviewer={props.interview.interviewer}
             onDelete={() => transition(CONFIRM)}
+            onEdit={() => transition(EDIT)}
           />
         )}
         {mode === CREATE && (
           <Form
-
             interviewers={props.interviewers}
             onCancel={() => transition(EMPTY)}
             onSave={(name, interviewer) => save(name, interviewer)}
@@ -86,6 +87,14 @@ const Appointment = (props) => {
         {mode === CONFIRM && (
           <Confirm message="Do you want to delete it?"
             onCancel={() => back(SHOW)} onConfirm={cancelAppointment} />
+        )}
+        {mode === EDIT && (
+          <Form student={interview.student}
+            interviewer={interview.interviewer.id}
+            interviewers={props.interviewers}
+            onCancel={() => back(EMPTY)}
+            onSave={save}
+          />
         )}
         {mode === ERROR && (
           <Error message="Error found" />
