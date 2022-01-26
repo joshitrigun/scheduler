@@ -19,25 +19,28 @@ const Appointment = (props) => {
   const SAVING = "SAVING";
   const DELETE = "DELETE";
   const CONFIRM = "CONFIRM";
-  const ERROR = "ERROR";
+  //const ERROR = "ERROR";
   const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
 
   function save(name, interviewer) {
-
+    transition(SAVING);
     const interview = {
       student: name,
       interviewer
     };
 
-    console.log("id", props.id);
     bookInterview(props.id, interview).then(() => {
       transition(SHOW);
+    }).catch(error => {
+      transition(ERROR_SAVE, true)
     });
-    transition(SAVING);
+
   }
 
   function cancelAppointment() {
@@ -48,7 +51,7 @@ const Appointment = (props) => {
         transition(EMPTY);
       })
       .catch(error => {
-        transition(ERROR);
+        transition(ERROR_DELETE, true);
       });
 
   }
@@ -58,7 +61,7 @@ const Appointment = (props) => {
     <>
       <article className="appointment">
         <Header time={props.time} />
-        {/* {interview ? <Show student={interview.student} interviewer={interview.interviewer.id} /> : <Empty />} */}
+
         {console.log(mode)}
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)}
 
@@ -96,8 +99,14 @@ const Appointment = (props) => {
             onSave={save}
           />
         )}
-        {mode === ERROR && (
+        {/* {mode === ERROR && (
           <Error message="Error found" />
+        )} */}
+        {mode === ERROR_SAVE && (
+          <Error message="Cannot save" onClose={() => back(EMPTY)} />
+        )}
+        {mode === ERROR_DELETE && (
+          <Error message="Cannot Delete" onClose={() => back(SHOW)} />
         )}
 
       </article>

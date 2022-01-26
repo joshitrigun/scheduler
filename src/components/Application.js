@@ -27,7 +27,7 @@ export default function Application(props) {
   }, []);
 
   const setDay = day => setState({ ...state, day });
-  
+
   function bookInterview(id, interview) {
 
     const appointment = {
@@ -46,8 +46,6 @@ export default function Application(props) {
           ...state,
           appointments
         });
-      }).catch(error => {
-        console.log("error", error)
       })
   }
 
@@ -58,8 +56,6 @@ export default function Application(props) {
         setState({
           ...state
         })
-      }).catch(error => {
-        console.log("Error found:", error);
       })
   }
 

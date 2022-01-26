@@ -5,7 +5,7 @@ import Button from 'components/Button';
 const Form = (props) => {
   const [student, setStudent] = useState(props.student || "");
 
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [interviewer, setInterviewer] = useState(props.interviewer || {});
 
   const reset = () => {
     setStudent("");
@@ -41,7 +41,7 @@ const Form = (props) => {
           value={interviewer}
           interviewers={props.interviewers}
           onChange={setInterviewer}
-          interviewer={props.interviewer.id}
+          interviewer={interviewer.id}
         />
       </section>
       <section className="appointment__card-right">
