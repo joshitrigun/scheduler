@@ -29,6 +29,7 @@ const Appointment = (props) => {
   );
 
   function save(name, interviewer) {
+
     transition(SAVING);
     const interview = {
       student: name,
@@ -38,7 +39,8 @@ const Appointment = (props) => {
     bookInterview(props.id, interview).then(() => {
       transition(SHOW);
     }).catch(error => {
-      transition(ERROR_SAVE, true)
+      console.log(error);
+      transition(ERROR_SAVE, true);
     });
 
   }
