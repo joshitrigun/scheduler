@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Show = (props) => {
+  console.log(props);
   const { student, interviewer, onDelete, onEdit } = props;
 
   return (
