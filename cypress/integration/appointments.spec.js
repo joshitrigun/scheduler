@@ -31,7 +31,7 @@ describe("Application", () => {
     cy.contains(".appointment__card--show", "Tori Malcolm");
   });
 
-  it  ("should cancel an interview", () => {
+  it("should cancel an interview", () => {
     cy.get("[alt=Delete]")
       .click({ force: true });
 
